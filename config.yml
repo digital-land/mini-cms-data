@@ -1,5 +1,29 @@
 collections:
  - id: specifications
    name: Specifications
+   fields:
+     - label: Specification ID (no spaces)
+       name: specification
+       type: string
+     - label: Specification name
+       name: name
+       type: string
+     - label: Specification name (plural)
+       name: plural
+       type: string
+     - label: Specification status
+       name: specification-status
+       type: string
+       default_value: candidate-standard
+     - label: Start date
+       name: start-date
+       type: date
+     - label: End date
+       name: end-date
+       type: date
+     - label: Entry date
+       name: entry-date
+       type: date
+       default_value: now()
  - id: guidance_pages
    name: Guidance pages
