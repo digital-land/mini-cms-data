@@ -1,3 +1,5 @@
 collections:
- - name: Specficiations
- - name: Guidance pages
+ - id: specifications
+   name: Specifications
+ - id: guidance_pages
+   name: Guidance pages
