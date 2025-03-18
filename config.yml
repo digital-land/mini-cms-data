@@ -1,29 +1,27 @@
 collections:
  - id: specifications
-   name: Specifications
-   fields:
-     - label: Specification ID (no spaces)
-       name: specification
-       type: string
-     - label: Specification name
-       name: name
-       type: string
-     - label: Specification name (plural)
-       name: plural
-       type: string
-     - label: Specification status
-       name: specification-status
-       type: string
-       default_value: candidate-standard
-     - label: Start date
-       name: start-date
-       type: date
-     - label: End date
-       name: end-date
-       type: date
-     - label: Entry date
-       name: entry-date
-       type: date
-       default_value: now()
+   label: Specifications
+   label_single: Specification
+   fields: 
+     - { label: "Specification ID (no spaces)", name: "specification", type: "string" }
+     - { label: "Specification name", name: "name", type: "string" }
+     - { label: "Specification name (plural)", name: "plural", type: "string" }
+     - { label: "Specification status", name: "specification-status", type: "string", default_value: "candidate-standard" }
+     - { label: "Start date", name: "start-date", type: "date" } 
+     - { label: "End date", name: "end-date", type: "date" }
+     - { label: "Entry date", name: "entry-date", type: "date", default_value: "now()" }
+   child_collections:
+     - id: datasets
+       name: Datasets
+       fields:
+         - { label: "Dataset ID (no spaces)", name: "dataset", type: "string" }
+         - { label: "Dataset name", name: "name", type: "string" }
+         - label: "Fields"
+           name: "fields"
+           type: "repeatable"
+           fields:
+             - { label: "Field", name: "field", type: "string" }
+             - { label: "Description", name: "description", type: "text" }
+             - { label: "Guidance", name: "guidance", type: "text" }       
  - id: guidance_pages
    name: Guidance pages
