@@ -10,9 +10,9 @@ collections:
      - { label: "Start date", name: "start-date", type: "date" } 
      - { label: "End date", name: "end-date", type: "date" }
      - { label: "Entry date", name: "entry-date", type: "date", default_value: "now()" }
-   child_collections:
-     - id: datasets
-       name: Datasets
+     - id: "datasets"
+       name: "Datasets"
+       type: "repeatable"
        fields:
          - { label: "Dataset ID (no spaces)", name: "dataset", type: "string" }
          - { label: "Dataset name", name: "name", type: "string" }
