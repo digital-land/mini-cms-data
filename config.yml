@@ -13,13 +13,13 @@ collections:
      - { label: "Start date", name: "start-date", type: "date" } 
      - { label: "End date", name: "end-date", type: "date" }
      - { label: "Entry date", name: "entry-date", type: "date", default_value: "now()" }
-     - id: "datasets"
+     - name: "datasets"
        label: "Datasets"
        type: "repeatable"
        fields:
          - { label: "Dataset ID (no spaces)", name: "dataset", type: "string" }
          - { label: "Dataset name", name: "name", type: "string" }
-         - id: "fields"
+         - name: "fields"
            label: "Fields"
            type: "repeatable"
            fields:
