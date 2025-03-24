@@ -15,12 +15,14 @@ collections:
      - { label: "Entry date", id: "entry-date", type: "date", default_value: "now()" }
      - id: "datasets"
        label: "Datasets"
+       label_single: "Dataset"
        type: "repeatable"
        fields:
          - { label: "Dataset ID (no spaces)", id: "dataset", type: "string" }
          - { label: "Dataset name", id: "name", type: "string" }
          - id: "fields"
            label: "Fields"
+           label_single: "Field"
            type: "repeatable"
            fields:
              - { label: "Field", id: "field", type: "string" }
