@@ -2,6 +2,9 @@ collections:
  - id: specifications
    label: Specifications
    label_single: Specification
+   field_map:
+     id: specification
+     display_name: name
    fields: 
      - { label: "Specification ID (no spaces)", name: "specification", type: "string" }
      - { label: "Specification name", name: "name", type: "string" }
@@ -26,6 +29,10 @@ collections:
  - id: guidance_pages
    label: Guidance pages
    label_single: Guidance page
+   field_map:
+     id: id
+     display_name: title
    fields:
+     - { label: "ID", name: "id", type: "string", default_value: "generate_uuid()" }
      - { label: "Title", name: "title", type: "string" }
      - { label: "Body", name: "body", type: "text" }
