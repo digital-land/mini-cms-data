@@ -1,5 +1,6 @@
 collections:
  - id: specifications
+   storage_path: /data/specifications
    label: Specifications
    label_single: Specification
    fields: 
@@ -24,6 +25,7 @@ collections:
              - { label: "Description", name: "description", type: "text" }
              - { label: "Guidance", name: "guidance", type: "text" }       
  - id: guidance_pages
+   storage_path: /data/guidance
    label: Guidance pages
    label_single: Guidance page
    fields:
