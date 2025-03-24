@@ -6,26 +6,26 @@ collections:
      id: specification
      display_name: name
    fields: 
-     - { label: "Specification ID (no spaces)", name: "specification", type: "string" }
-     - { label: "Specification name", name: "name", type: "string" }
-     - { label: "Specification name (plural)", name: "plural", type: "string" }
-     - { label: "Specification status", name: "specification-status", type: "string", default_value: "candidate-standard" }
-     - { label: "Start date", name: "start-date", type: "date" } 
-     - { label: "End date", name: "end-date", type: "date" }
-     - { label: "Entry date", name: "entry-date", type: "date", default_value: "now()" }
-     - name: "datasets"
+     - { label: "Specification ID (no spaces)", id: "specification", type: "string" }
+     - { label: "Specification name", id: "name", type: "string" }
+     - { label: "Specification name (plural)", id: "plural", type: "string" }
+     - { label: "Specification status", id: "specification-status", type: "string", default_value: "candidate-standard" }
+     - { label: "Start date", id: "start-date", type: "date" } 
+     - { label: "End date", id: "end-date", type: "date" }
+     - { label: "Entry date", id: "entry-date", type: "date", default_value: "now()" }
+     - id: "datasets"
        label: "Datasets"
        type: "repeatable"
        fields:
-         - { label: "Dataset ID (no spaces)", name: "dataset", type: "string" }
-         - { label: "Dataset name", name: "name", type: "string" }
-         - name: "fields"
+         - { label: "Dataset ID (no spaces)", id: "dataset", type: "string" }
+         - { label: "Dataset name", id: "name", type: "string" }
+         - id: "fields"
            label: "Fields"
            type: "repeatable"
            fields:
-             - { label: "Field", name: "field", type: "string" }
-             - { label: "Description", name: "description", type: "text" }
-             - { label: "Guidance", name: "guidance", type: "text" }       
+             - { label: "Field", id: "field", type: "string" }
+             - { label: "Description", id: "description", type: "text" }
+             - { label: "Guidance", id: "guidance", type: "text" }       
  - id: guidance_pages
    label: Guidance pages
    label_single: Guidance page
@@ -33,6 +33,6 @@ collections:
      id: id
      display_name: title
    fields:
-     - { label: "ID", name: "id", type: "string", default_value: "generate_uuid()" }
-     - { label: "Title", name: "title", type: "string" }
-     - { label: "Body", name: "body", type: "text" }
+     - { label: "ID", id: "id", type: "string", default_value: "generate_uuid()" }
+     - { label: "Title", id: "title", type: "string" }
+     - { label: "Body", id: "body", type: "text" }
