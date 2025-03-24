@@ -1,5 +1,5 @@
 id: tree-preservation-order
-display: Tree Preservation Order
+display_name: Tree Preservation Order
 data:
   specification: tree-preservation-order
   name: Tree preservation order
