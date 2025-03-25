@@ -6,28 +6,28 @@ collections:
      id: specification
      display_name: name
    fields: 
-     - { label: "Specification ID (no spaces)", id: "specification", type: "string" }
-     - { label: "Specification name", id: "name", type: "string" }
-     - { label: "Specification name (plural)", id: "plural", type: "string" }
-     - { label: "Specification status", id: "specification-status", type: "string", default_value: "candidate-standard" }
-     - { label: "Start date", id: "start-date", type: "date" } 
-     - { label: "End date", id: "end-date", type: "date" }
-     - { label: "Entry date", id: "entry-date", type: "date", default_value: "now()" }
+     - { id: "specification", label: "Specification ID (no spaces)", type: "string" }
+     - { id: "name", label: "Specification name", type: "string", editable: true }
+     - { id: "plural", label: "Specification name (plural)", type: "string", editable: true }
+     - { id: "specification-status", label: "Specification status", type: "string", default_value: "candidate-standard", editable: true }
+     - { id: "start-date", label: "Start date", type: "date", editable: true } 
+     - { id: "end-date", label: "End date", type: "date", editable: true }
+     - { id: "entry-date", label: "Entry date", type: "date", default_value: "now()", editable: true }
      - id: "datasets"
        label: "Datasets"
        label_single: "Dataset"
        type: "repeatable"
        fields:
-         - { label: "Dataset ID (no spaces)", id: "dataset", type: "string" }
-         - { label: "Dataset name", id: "name", type: "string" }
+         - { id: "dataset", label: "Dataset ID (no spaces)", type: "string" }
+         - { id: "name", label: "Dataset name", type: "string", editable: true }
          - id: "fields"
            label: "Fields"
            label_single: "Field"
            type: "repeatable"
            fields:
-             - { label: "Field", id: "field", type: "string" }
-             - { label: "Description", id: "description", type: "text" }
-             - { label: "Guidance", id: "guidance", type: "text" }       
+             - { id: "field", label: "Field", type: "string" }
+             - { id: "description", label: "Description", type: "text", editable: true }
+             - { id: "guidance", label: "Guidance", type: "text", editable: true }       
  - id: guidance_pages
    label: Guidance pages
    label_single: Guidance page
@@ -35,6 +35,6 @@ collections:
      id: id
      display_name: title
    fields:
-     - { label: "ID", id: "id", type: "string", default_value: "generate_uuid()" }
-     - { label: "Title", id: "title", type: "string" }
-     - { label: "Body", id: "body", type: "text" }
+     - { id: "id", label: "ID", type: "string", default_value: "generate_uuid()" }
+     - { id: "title", label: "Title", type: "string", editable: true }
+     - { id: "body", label: "Body", type: "text", editable: true }
