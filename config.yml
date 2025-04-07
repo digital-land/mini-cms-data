@@ -2,6 +2,7 @@ collections:
  - id: specifications
    label: Specifications
    label_single: Specification
+   description: Specifications for planning datasets
    field_map:
      id: specification
      label: name
@@ -37,6 +38,7 @@ collections:
  - id: guidance_pages
    label: Guidance pages
    label_single: Guidance page
+   description: Guidance pages for planning data
    field_map:
      id: id
      display_name: title
