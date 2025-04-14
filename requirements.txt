@@ -1,2 +1,3 @@
 PyGithub==2.1.1
 ruamel.yaml==0.18.10
+ruamel.yaml.scalarstring==0.18.10

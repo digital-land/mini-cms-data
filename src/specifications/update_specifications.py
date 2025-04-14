@@ -4,6 +4,8 @@ import os
 from github import Github
 from datetime import datetime
 from ruamel.yaml import YAML
+from ruamel.yaml.scalarstring import PlainScalarString
+from ruamel.yaml.nodes import ScalarNode
 from io import StringIO
 
 yaml = YAML()
@@ -19,6 +21,11 @@ def str_presenter(dumper, data):
     return dumper.represent_scalar('tag:yaml.org,2002:str', data)
 
 yaml.representer.add_representer(str, str_presenter)
+
+def quoted_key_representer(dumper, data):
+    return ScalarNode(tag='tag:yaml.org,2002:str', value=data, style=None)
+
+yaml.representer.add_representer(PlainScalarString, quoted_key_representer)
 
 # GitHub repository details
 REPO_NAME = "dilwoarh/digital-land-specification"
@@ -52,7 +59,7 @@ def order_data(data):
     # Order top-level fields
     for field in data_order:
         if field in data:
-            ordered_data[field] = data[field]
+            ordered_data[PlainScalarString(field)] = data[field]
 
     return ordered_data
 
