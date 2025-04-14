@@ -10,23 +10,15 @@ from collections import OrderedDict
 with open('src/specifications/schema.yml', 'r') as f:
     SCHEMA = yaml.safe_load(f)
 
-# Configure YAML for ordered dictionaries and lists
-def ordered_dict_constructor(loader, node):
-    return OrderedDict(loader.construct_pairs(node))
-
-def ordered_list_constructor(loader, node):
-    return list(loader.construct_sequence(node))
-
-def ordered_dict_representer(dumper, data):
-    return dumper.represent_mapping('tag:yaml.org,2002:map', data.items())
-
-def ordered_list_representer(dumper, data):
-    return dumper.represent_sequence('tag:yaml.org,2002:seq', data)
-
-yaml.add_constructor('tag:yaml.org,2002:map', ordered_dict_constructor)
-yaml.add_constructor('tag:yaml.org,2002:seq', ordered_list_constructor)
+def ordered_dict_representer(self, value):
+    return self.represent_mapping('tag:yaml.org,2002:map', value.items())
 yaml.add_representer(OrderedDict, ordered_dict_representer)
-yaml.add_representer(list, ordered_list_representer)
+
+def str_presenter(dumper, data):
+    if '\n' in data:
+        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')
+    return dumper.represent_scalar('tag:yaml.org,2002:str', data)
+yaml.add_representer(str, str_presenter)
 
 # GitHub repository details
 REPO_NAME = "dilwoarh/digital-land-specification"
@@ -43,31 +35,6 @@ def get_spec_type(filename):
     """Extract specification type from filename"""
     return os.path.basename(filename).replace('.yml', '')
 
-def order_dataset_fields(fields, schema):
-    """Order fields within a dataset according to schema"""
-    ordered_fields = []
-    for field in fields:
-        ordered_field = OrderedDict()
-        for prop in schema['fields']['datasets']['items']['properties']['fields']['items']['properties']:
-            if prop in field:
-                ordered_field[prop] = field[prop]
-        ordered_fields.append(ordered_field)
-    return ordered_fields
-
-def order_datasets(datasets, schema):
-    """Order datasets according to schema"""
-    ordered_datasets = []
-    for dataset in datasets:
-        ordered_dataset = OrderedDict()
-        for prop in schema['fields']['datasets']['items']['properties']:
-            if prop in dataset:
-                if prop == 'fields':
-                    ordered_dataset[prop] = order_dataset_fields(dataset[prop], schema)
-                else:
-                    ordered_dataset[prop] = dataset[prop]
-        ordered_datasets.append(ordered_dataset)
-    return ordered_datasets
-
 def order_data(data, spec_type):
     """Order data according to schema"""
     if spec_type not in SCHEMA['specifications']:
@@ -79,10 +46,7 @@ def order_data(data, spec_type):
     # Order top-level fields
     for field in schema['order']:
         if field in data:
-            if field == 'datasets':
-                ordered_data[field] = order_datasets(data[field], schema)
-            else:
-                ordered_data[field] = data[field]
+            ordered_data[field] = data[field]
 
     return ordered_data
 
@@ -105,7 +69,14 @@ def update_files_in_branch(repo, branch_name):
             content = order_data(content, spec_type)
 
             # Dump YAML with ordered data and frontmatter markers
-            content = yaml.dump(content, default_flow_style=False, explicit_start=True, explicit_end=True)
+            content = yaml.dump(content,
+                                sort_keys=False,
+                                allow_unicode=True,
+                                default_flow_style=False,
+                                indent=2,
+                                width=1000
+                                )
+            content = f"---\n{content}---\n"
 
             # Get the file from GitHub repository if it exists
             try:
