@@ -3,22 +3,17 @@
 import os
 from github import Github
 from datetime import datetime
-import yaml
-from collections import OrderedDict
+from ruamel.yaml import YAML
+from io import StringIO
+
+yaml = YAML()
+yaml.preserve_quotes = True
+yaml.default_flow_style = False
+yaml.indent(mapping=2, sequence=4, offset=2)
 
 # Load schema
 with open('src/specifications/schema.yml', 'r') as f:
-    SCHEMA = yaml.safe_load(f)
-
-def ordered_dict_representer(self, value):
-    return self.represent_mapping('tag:yaml.org,2002:map', value.items())
-yaml.add_representer(OrderedDict, ordered_dict_representer)
-
-def str_presenter(dumper, data):
-    if '\n' in data:
-        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')
-    return dumper.represent_scalar('tag:yaml.org,2002:str', data)
-yaml.add_representer(str, str_presenter)
+    SCHEMA = yaml.load(f)
 
 # GitHub repository details
 REPO_NAME = "dilwoarh/digital-land-specification"
@@ -41,7 +36,7 @@ def order_data(data, spec_type):
         return data
 
     schema = SCHEMA['specifications'][spec_type]
-    ordered_data = OrderedDict()
+    ordered_data = {}
 
     # Order top-level fields
     for field in schema['order']:
@@ -61,7 +56,7 @@ def update_files_in_branch(repo, branch_name):
                 source_content = f.read()
 
             # Load YAML content
-            yaml_content = yaml.safe_load(source_content)
+            yaml_content = yaml.load(source_content)
             content = yaml_content["data"]
 
             # Get specification type and order data
@@ -69,14 +64,9 @@ def update_files_in_branch(repo, branch_name):
             content = order_data(content, spec_type)
 
             # Dump YAML with ordered data and frontmatter markers
-            content = yaml.dump(content,
-                                sort_keys=False,
-                                allow_unicode=True,
-                                default_flow_style=False,
-                                indent=2,
-                                width=1000
-                                )
-            content = f"---\n{content}---\n"
+            buffer = StringIO()
+            yaml.dump(content, buffer)
+            content = f"---\n{buffer.getvalue().strip()}\n"
 
             # Get the file from GitHub repository if it exists
             try:
