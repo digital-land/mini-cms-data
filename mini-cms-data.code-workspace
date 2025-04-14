@@ -1,0 +1,15 @@
+{
+  "folders": [
+    {
+      "path": "."
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "[yaml]": {
+      "editor.formatOnSave": false,
+      "editor.insertSpaces": true,
+      "editor.tabSize": 2
+    }
+  }
+}

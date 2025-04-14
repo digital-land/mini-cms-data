@@ -1,48 +1,49 @@
+---
 collections:
- - id: specifications
-   label: Specifications
-   label_single: Specification
-   description: Specifications for planning datasets
-   field_map:
-     id: specification
-     label: name
-   fields: 
-     - { id: "specification", label: "Specification ID (no spaces)", type: "string", required: true }
-     - { id: "name", label: "Specification name", type: "string", editable: true, required: true }
-     - { id: "plural", label: "Specification name (plural)", type: "string", editable: true, required: true }
-     - { id: "specification-status", label: "Specification status", type: "string", default_value: "candidate-standard", editable: true, required: true }
-     - { id: "start-date", label: "Start date", type: "date", editable: true } 
-     - { id: "end-date", label: "End date", type: "date", editable: true }
-     - { id: "entry-date", label: "Entry date", type: "date", default_value: "now()", editable: true, required: true }
-     - id: "datasets"
-       label: "Datasets"
-       label_single: "Dataset"
-       type: "repeatable"
-       field_map:
-         id: dataset
-         label: name
-       fields:
-         - { id: "dataset", label: "Dataset ID (no spaces)", type: "string", required: true }
-         - { id: "name", label: "Dataset name", type: "string", editable: true, required: true }
-         - id: "fields"
-           label: "Fields"
-           label_single: "Field"
-           type: "repeatable"
-           field_map:
-             id: field
-             label: field
-           fields:
-             - { id: "field", label: "Field", type: "string", required: true }
-             - { id: "description", label: "Description", type: "text", editable: true }
-             - { id: "guidance", label: "Guidance", type: "text", editable: true }       
- - id: guidance_pages
-   label: Guidance pages
-   label_single: Guidance page
-   description: Guidance pages for planning data
-   field_map:
-     id: id
-     display_name: title
-   fields:
-     - { id: "id", label: "ID", type: "string", default_value: "generate_uuid()", required: true }
-     - { id: "title", label: "Title", type: "string", editable: true, required: true }
-     - { id: "body", label: "Body", type: "text", editable: true, required: true }
+  - id: specifications
+    label: Specifications
+    label_single: Specification
+    description: Specifications for planning datasets
+    field_map:
+      id: specification
+      label: name
+    fields:
+      - { id: "specification", label: "Specification ID (no spaces)", type: "string", required: true }
+      - { id: "name", label: "Specification name", type: "string", editable: true, required: true }
+      - { id: "plural", label: "Specification name (plural)", type: "string", editable: true, required: true }
+      - { id: "specification-status", label: "Specification status", type: "string", default_value: "candidate-standard", editable: true, required: true }
+      - { id: "start-date", label: "Start date", type: "date", editable: true }
+      - { id: "end-date", label: "End date", type: "date", editable: true }
+      - { id: "entry-date", label: "Entry date", type: "date", default_value: "now()", editable: true, required: true }
+      - id: "datasets"
+        label: "Datasets"
+        label_single: "Dataset"
+        type: "repeatable"
+        field_map:
+          id: dataset
+          label: name
+        fields:
+          - { id: "dataset", label: "Dataset ID (no spaces)", type: "string", required: true }
+          - { id: "name", label: "Dataset name", type: "string", editable: true, required: true }
+          - id: "fields"
+            label: "Fields"
+            label_single: "Field"
+            type: "repeatable"
+            field_map:
+              id: field
+              label: field
+            fields:
+              - { id: "field", label: "Field", type: "string", required: true }
+              - { id: "description", label: "Description", type: "text", editable: true }
+              - { id: "guidance", label: "Guidance", type: "text", editable: true }
+  - id: guidance_pages
+    label: Guidance pages
+    label_single: Guidance page
+    description: Guidance pages for planning data
+    field_map:
+      id: id
+      display_name: title
+    fields:
+      - { id: "id", label: "ID", type: "string", default_value: "generate_uuid()", required: true }
+      - { id: "title", label: "Title", type: "string", editable: true, required: true }
+      - { id: "body", label: "Body", type: "text", editable: true, required: true }
