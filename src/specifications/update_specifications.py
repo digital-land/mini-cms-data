@@ -30,25 +30,27 @@ FILE_MAPPING = {
     "data/collections/specifications/listed-building.yml": "content/specification/listed-building.md",
     "data/collections/specifications/tree-preservation-order.yml": "content/specification/tree-preservation-order.md"
 }
-DATA_ORDER = [
-    "specification",
-    "name",
-    "plural",
-    "specification-status",
-    "start-date",
-    "end-date",
-    "entry-date",
-    "github-discussion",
-    "version",
-    "datasets"
-]
+
+def get_data_order():
+    """Get the order of fields from the config file"""
+    with open('config.yml', 'r') as f:
+        config = yaml.load(f)
+
+    # Find the specifications collection
+    for collection in config['collections']:
+        if collection['id'] == 'specifications':
+            # Extract field IDs from the fields section
+            return [field['id'] for field in collection['fields'] if isinstance(field, dict) and 'id' in field]
+
+    return []
 
 def order_data(data):
     """Order data according to schema"""
     ordered_data = {}
+    data_order = get_data_order()
 
     # Order top-level fields
-    for field in DATA_ORDER:
+    for field in data_order:
         if field in data:
             ordered_data[field] = data[field]
 

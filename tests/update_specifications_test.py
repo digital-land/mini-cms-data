@@ -10,7 +10,7 @@ from src.specifications.update_specifications import (
     update_files_in_branch,
     create_pull_request,
     REPO_NAME,
-    DATA_ORDER
+    get_data_order
 )
 
 # Test data
@@ -51,8 +51,31 @@ def mock_file():
     mock_file.sha = 'test_sha'
     return mock_file
 
-def test_order_data():
+@patch('builtins.open', new_callable=MagicMock)
+@patch('ruamel.yaml.YAML.load')
+def test_order_data(mock_yaml_load, mock_open):
     """Test ordering data according to schema"""
+    # Mock the config file content
+    mock_yaml_load.return_value = {
+        'collections': [
+            {
+                'id': 'specifications',
+                'fields': [
+                    {'id': 'specification'},
+                    {'id': 'name'},
+                    {'id': 'plural'},
+                    {'id': 'specification-status'},
+                    {'id': 'start-date'},
+                    {'id': 'end-date'},
+                    {'id': 'entry-date'},
+                    {'id': 'github-discussion'},
+                    {'id': 'version'},
+                    {'id': 'datasets'}
+                ]
+            }
+        ]
+    }
+
     # Test with all fields
     data = {
         'specification': 'test-spec',
@@ -69,7 +92,9 @@ def test_order_data():
     }
     ordered = order_data(data)
     # Check that all fields are in the correct order and extra fields are excluded
-    assert list(ordered.keys()) == DATA_ORDER
+    expected_order = ['specification', 'name', 'plural', 'specification-status', 'start-date',
+                     'end-date', 'entry-date', 'github-discussion', 'version', 'datasets']
+    assert list(ordered.keys()) == expected_order
     assert 'extra_field' not in ordered
 
     # Test with missing fields
@@ -85,8 +110,65 @@ def test_order_data():
 @patch('ruamel.yaml.YAML.dump')
 def test_update_files_in_branch(mock_yaml_dump, mock_yaml_load, mock_open, mock_repo, mock_file):
     """Test updating files in GitHub branch"""
-    # Setup mocks
-    mock_yaml_load.return_value = TEST_YAML_CONTENT
+    # Setup mocks for config file and source file
+    mock_file_handle = MagicMock()
+    mock_file_handle.__enter__.return_value = mock_file_handle
+    mock_open.return_value = mock_file_handle
+    mock_file_handle.read.return_value = "test content"
+
+    # Mock YAML load for both config file and source file
+    config_yaml = {
+        'collections': [
+            {
+                'id': 'specifications',
+                'fields': [
+                    {'id': 'specification'},
+                    {'id': 'name'},
+                    {'id': 'plural'},
+                    {'id': 'specification-status'},
+                    {'id': 'start-date'},
+                    {'id': 'end-date'},
+                    {'id': 'entry-date'},
+                    {'id': 'github-discussion'},
+                    {'id': 'version'},
+                    {'id': 'datasets'}
+                ]
+            }
+        ]
+    }
+
+    source_yaml = {
+        'data': {
+            'specification': 'test-spec',
+            'name': 'Test name',
+            'plural': 'Test names',
+            'specification-status': 'candidate-standard',
+            'start-date': '2024-01-01',
+            'end-date': '',
+            'entry-date': '2024-01-01',
+            'github-discussion': '123',
+            'version': '1.0.0',
+            'datasets': [
+                {
+                    'dataset': 'test-dataset',
+                    'name': 'Test dataset',
+                    'fields': [
+                        {'field': 'field1', 'description': 'Field 1'},
+                        {'field': 'field2', 'description': 'Field 2'}
+                    ]
+                }
+            ]
+        }
+    }
+
+    # Set up mock YAML load to return different values for config and source files
+    def mock_yaml_load_side_effect(content):
+        if content == "test content":
+            return source_yaml
+        return config_yaml
+
+    mock_yaml_load.side_effect = mock_yaml_load_side_effect
+
     mock_repo.get_contents.return_value = mock_file
     mock_repo.update_file.return_value = {'commit': {'sha': 'test_sha'}}
 
