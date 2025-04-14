@@ -26,7 +26,7 @@ with open('src/specifications/schema.yml', 'r') as f:
 
 # GitHub repository details
 REPO_NAME = "dilwoarh/digital-land-specification"
-BRANCH_NAME = f"update-specifications-{datetime.now().strftime('%Y%m%d-%H%M%S')}"
+BRANCH_NAME = f"mini-cms/update-specifications-{datetime.now().strftime('%Y-%m-%d--%H-%M-%S')}"
 FILE_MAPPING = {
     "data/collections/specifications/article-4-direction.yml": "content/specification/article-4-direction.md",
     "data/collections/specifications/brownfield-land.yml": "content/specification/brownfield-land.md",
@@ -144,7 +144,7 @@ if __name__ == "__main__":
         raise ValueError("GITHUB_TOKEN environment variable is not set")
 
     # Create pull request
-    title = f"[Mini CMS] Update specifications {datetime.now().strftime('%Y%m%d-%H%M%S')}"
+    title = f"[Mini CMS] Update specifications {datetime.now().strftime('%Y-%m-%d--%H-%M-%S')}"
     body = "This PR updates the specifications based on the latest changes from the Mini CMS."
 
     create_pull_request(token, title, body)
