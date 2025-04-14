@@ -20,10 +20,6 @@ def str_presenter(dumper, data):
 
 yaml.representer.add_representer(str, str_presenter)
 
-# Load schema
-with open('src/specifications/schema.yml', 'r') as f:
-    SCHEMA = yaml.load(f)
-
 # GitHub repository details
 REPO_NAME = "dilwoarh/digital-land-specification"
 BRANCH_NAME = f"mini-cms/update-specifications-{datetime.now().strftime('%Y-%m-%d--%H-%M-%S')}"
@@ -34,21 +30,25 @@ FILE_MAPPING = {
     "data/collections/specifications/listed-building.yml": "content/specification/listed-building.md",
     "data/collections/specifications/tree-preservation-order.yml": "content/specification/tree-preservation-order.md"
 }
+DATA_ORDER = [
+    "specification",
+    "name",
+    "plural",
+    "specification-status",
+    "start-date",
+    "end-date",
+    "entry-date",
+    "github-discussion",
+    "version",
+    "datasets"
+]
 
-def get_spec_type(filename):
-    """Extract specification type from filename"""
-    return os.path.basename(filename).replace('.yml', '')
-
-def order_data(data, spec_type):
+def order_data(data):
     """Order data according to schema"""
-    if spec_type not in SCHEMA['specifications']:
-        return data
-
-    schema = SCHEMA['specifications'][spec_type]
     ordered_data = {}
 
     # Order top-level fields
-    for field in schema['order']:
+    for field in DATA_ORDER:
         if field in data:
             ordered_data[field] = data[field]
 
@@ -69,8 +69,7 @@ def update_files_in_branch(repo, branch_name):
             content = yaml_content["data"]
 
             # Get specification type and order data
-            spec_type = get_spec_type(source)
-            content = order_data(content, spec_type)
+            content = order_data(content)
 
             # Dump YAML with ordered data and frontmatter markers
             buffer = StringIO()

@@ -6,27 +6,35 @@ from ruamel.yaml import YAML
 from io import StringIO
 from github.GithubException import BadCredentialsException
 from src.specifications.update_specifications import (
-    get_spec_type,
     order_data,
     update_files_in_branch,
     create_pull_request,
-    REPO_NAME
+    REPO_NAME,
+    DATA_ORDER
 )
 
 # Test data
-TEST_SCHEMA = {
-    'specifications': {
-        'article-4-direction': {
-            'order': ['name', 'description', 'fields']
-        }
-    }
-}
-
 TEST_YAML_CONTENT = {
     'data': {
-        'description': 'Test description',
+        'specification': 'test-spec',
         'name': 'Test name',
-        'fields': ['field1', 'field2']
+        'plural': 'Test names',
+        'specification-status': 'candidate-standard',
+        'start-date': '2024-01-01',
+        'end-date': '',
+        'entry-date': '2024-01-01',
+        'github-discussion': '123',
+        'version': '1.0.0',
+        'datasets': [
+            {
+                'dataset': 'test-dataset',
+                'name': 'Test dataset',
+                'fields': [
+                    {'field': 'field1', 'description': 'Field 1'},
+                    {'field': 'field2', 'description': 'Field 2'}
+                ]
+            }
+        ]
     }
 }
 
@@ -43,27 +51,34 @@ def mock_file():
     mock_file.sha = 'test_sha'
     return mock_file
 
-def test_get_spec_type():
-    """Test extracting specification type from filename"""
-    assert get_spec_type('data/collections/specifications/article-4-direction.yml') == 'article-4-direction'
-    assert get_spec_type('brownfield-land.yml') == 'brownfield-land'
-
-@patch('src.specifications.update_specifications.SCHEMA', TEST_SCHEMA)
 def test_order_data():
     """Test ordering data according to schema"""
-    # Test with schema matching
+    # Test with all fields
     data = {
-        'description': 'Test description',
+        'specification': 'test-spec',
         'name': 'Test name',
-        'fields': ['field1', 'field2']
+        'plural': 'Test names',
+        'specification-status': 'candidate-standard',
+        'start-date': '2024-01-01',
+        'end-date': '',
+        'entry-date': '2024-01-01',
+        'github-discussion': '123',
+        'version': '1.0.0',
+        'datasets': [],
+        'extra_field': 'should be last'
     }
-    ordered = order_data(data, 'article-4-direction')
-    assert list(ordered.keys()) == ['name', 'description', 'fields']
+    ordered = order_data(data)
+    # Check that all fields are in the correct order and extra fields are excluded
+    assert list(ordered.keys()) == DATA_ORDER
+    assert 'extra_field' not in ordered
 
-    # Test with no schema matching
-    data = {'test': 'value'}
-    ordered = order_data(data, 'non-existent-spec')
-    assert ordered == data
+    # Test with missing fields
+    data = {
+        'name': 'Test name',
+        'version': '1.0.0',
+    }
+    ordered = order_data(data)
+    assert list(ordered.keys()) == ['name', 'version']
 
 @patch('builtins.open', new_callable=MagicMock)
 @patch('ruamel.yaml.YAML.load')
@@ -77,7 +92,24 @@ def test_update_files_in_branch(mock_yaml_dump, mock_yaml_load, mock_open, mock_
 
     # Mock StringIO for YAML dump
     buffer = StringIO()
-    buffer.write("---\nname: Test name\ndescription: Test description\nfields:\n  - field1\n  - field2\n")
+    buffer.write("---\n")
+    buffer.write("specification: test-spec\n")
+    buffer.write("name: Test name\n")
+    buffer.write("plural: Test names\n")
+    buffer.write("specification-status: candidate-standard\n")
+    buffer.write("start-date: '2024-01-01'\n")
+    buffer.write("end-date: ''\n")
+    buffer.write("entry-date: '2024-01-01'\n")
+    buffer.write("github-discussion: '123'\n")
+    buffer.write("version: 1.0.0\n")
+    buffer.write("datasets:\n")
+    buffer.write("  - dataset: test-dataset\n")
+    buffer.write("    name: Test dataset\n")
+    buffer.write("    fields:\n")
+    buffer.write("      - field: field1\n")
+    buffer.write("        description: Field 1\n")
+    buffer.write("      - field: field2\n")
+    buffer.write("        description: Field 2\n")
     mock_yaml_dump.return_value = buffer
 
     # Test file update
