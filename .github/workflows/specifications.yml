@@ -1,0 +1,21 @@
+name: Specifications Update
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "data/collections/specifications/**"
+      - ".github/workflows/specifications.yml"
+
+jobs:
+  create-specification-pull-request:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Create specification pull request
+        run: |
+          echo "Creating specification pull request"
+          python scripts/update-specifications.py
