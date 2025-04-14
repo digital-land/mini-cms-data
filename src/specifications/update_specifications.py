@@ -10,6 +10,15 @@ yaml = YAML()
 yaml.preserve_quotes = True
 yaml.default_flow_style = False
 yaml.indent(mapping=2, sequence=4, offset=2)
+yaml.width = 4096  # Allow for long lines
+
+# Add custom representer for multi-line strings
+def str_presenter(dumper, data):
+    if '\n' in data:
+        return dumper.represent_scalar('tag:yaml.org,2002:str', data, style='|')
+    return dumper.represent_scalar('tag:yaml.org,2002:str', data)
+
+yaml.representer.add_representer(str, str_presenter)
 
 # Load schema
 with open('src/specifications/schema.yml', 'r') as f:
