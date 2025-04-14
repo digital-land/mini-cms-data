@@ -18,4 +18,4 @@ jobs:
       - name: Create specification pull request
         run: |
           echo "Creating specification pull request"
-          python src/specifications/update-specifications.py
+          python src/specifications/update_specifications.py
