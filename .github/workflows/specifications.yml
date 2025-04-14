@@ -26,6 +26,8 @@ jobs:
           pip install -r requirements.txt
 
       - name: Create specification pull request
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo "Creating specification pull request"
           python src/specifications/update_specifications.py
