@@ -104,8 +104,8 @@ def update_files_in_branch(repo, branch_name):
             spec_type = get_spec_type(source)
             content = order_data(content, spec_type)
 
-            # Dump YAML with ordered data
-            content = yaml.dump(content, default_flow_style=False)
+            # Dump YAML with ordered data and frontmatter markers
+            content = yaml.dump(content, default_flow_style=False, explicit_start=True, explicit_end=True)
 
             # Get the file from GitHub repository if it exists
             try:
