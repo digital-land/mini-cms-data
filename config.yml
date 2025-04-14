@@ -15,6 +15,8 @@ collections:
       - { id: "start-date", label: "Start date", type: "date", editable: true }
       - { id: "end-date", label: "End date", type: "date", editable: true }
       - { id: "entry-date", label: "Entry date", type: "date", default_value: "now()", editable: true, required: true }
+      - { id: "github-discussion", label: "GitHub discussion", type: "string", editable: true }
+      - { id: "version", label: "Version", type: "string", editable: true }
       - id: "datasets"
         label: "Datasets"
         label_single: "Dataset"

@@ -12,6 +12,8 @@ specifications:
       - start-date
       - end-date
       - entry-date
+      - github-discussion
+      - version
       - datasets
     fields:
       specification:
@@ -68,6 +70,8 @@ specifications:
       - start-date
       - end-date
       - entry-date
+      - github-discussion
+      - version
       - datasets
     fields:
       specification:
@@ -124,6 +128,8 @@ specifications:
       - start-date
       - end-date
       - entry-date
+      - github-discussion
+      - version
       - datasets
     fields:
       specification:
@@ -180,6 +186,8 @@ specifications:
       - start-date
       - end-date
       - entry-date
+      - github-discussion
+      - version
       - datasets
     fields:
       specification:
@@ -236,6 +244,8 @@ specifications:
       - start-date
       - end-date
       - entry-date
+      - github-discussion
+      - version
       - datasets
     fields:
       specification:
