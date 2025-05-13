@@ -9,14 +9,14 @@ collections:
       label: name
     fields:
       - { id: "specification", label: "Specification ID (no spaces)", type: "string", required: true }
-      - { id: "name", label: "Specification name", type: "string", editable: true, required: true }
-      - { id: "plural", label: "Specification name (plural)", type: "string", editable: true, required: true }
-      - { id: "specification-status", label: "Specification status", type: "string", default_value: "candidate-standard", editable: true, required: true }
-      - { id: "start-date", label: "Start date", type: "date", editable: true }
-      - { id: "end-date", label: "End date", type: "date", editable: true }
-      - { id: "entry-date", label: "Entry date", type: "date", default_value: "now()", editable: true, required: true }
-      - { id: "github-discussion", label: "GitHub discussion", type: "string", editable: true }
-      - { id: "version", label: "Version", type: "string", editable: true }
+      - { id: "name", label: "Specification name", type: "string", editable: false, required: true }
+      - { id: "plural", label: "Specification name (plural)", type: "string", editable: false, required: true }
+      - { id: "specification-status", label: "Specification status", type: "string", default_value: "candidate-standard", editable: false, required: true }
+      - { id: "start-date", label: "Start date", type: "date", editable: false }
+      - { id: "end-date", label: "End date", type: "date", editable: false }
+      - { id: "entry-date", label: "Entry date", type: "date", default_value: "now()", editable: false, required: true }
+      - { id: "github-discussion", label: "GitHub discussion", type: "string", editable: false }
+      - { id: "version", label: "Version", type: "string", editable: false }
       - id: "datasets"
         label: "Datasets"
         label_single: "Dataset"
@@ -26,7 +26,7 @@ collections:
           label: name
         fields:
           - { id: "dataset", label: "Dataset ID (no spaces)", type: "string", required: true }
-          - { id: "name", label: "Dataset name", type: "string", editable: true, required: true }
+          - { id: "name", label: "Dataset name", type: "string", editable: false, required: true }
           - id: "fields"
             label: "Fields"
             label_single: "Field"
