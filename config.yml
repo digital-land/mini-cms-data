@@ -37,7 +37,7 @@ collections:
             fields:
               - { id: "field", label: "Field", type: "string", required: true }
               - { id: "description", label: "Description", type: "text", editable: true }
-              - { id: "guidance", label: "Guidance", type: "text", editable: true }
+              - { id: "guidance", label: "Guidance", type: "govspeak", editable: true }
   - id: guidance_pages
     label: Guidance pages
     label_single: Guidance page
