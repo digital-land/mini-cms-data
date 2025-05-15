@@ -9,7 +9,7 @@ data:
         \ site. If one doesn\u2019t exist, you need to create one. It should not be\
         \ used by your organisation to identify any other sites, but can be borrowed\
         \ from another data set listing the site. You could use the strategic site\
-        \ identifier from your local plan, for example: \\`EH/141\\`\r\n\r\n## hello"
+        \ identifier from your local plan, for example: \\`EH/141\\`"
     - dataset-field: name
       field: SiteNameAddress
       guidance: 'Enter the site name and address in a single line of text, for example:
