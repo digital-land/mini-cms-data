@@ -49,3 +49,32 @@ collections:
       - { id: "id", label: "ID", type: "string", default_value: "generate_uuid()", required: true }
       - { id: "title", label: "Title", type: "string", editable: true, required: true }
       - { id: "body", label: "Body", type: "text", editable: true, required: true }
+  - id: data_design_events
+    label: Data design events 
+    label_single: Data design event
+    description: Events for Planning data design
+    field_map:
+      id: id
+      display_name: name
+    fields:
+      - { id: "id", label: "ID", type: "string", default_value: "generate_uuid()", required: true }
+      - { id: "name", label: "Name of event", type: "string", editable: true, required: true }
+      - { id: "description", label: "Description", type: "text", editable: true, required: false }
+      - { id: "audience", label: "Audience", type: "text", editable: true, required: false }
+      - { id: "link", label: "Link", type: "text", editable: true, required: false }
+      - { id: "start_time", label: "Start time", type: "datetime", default_value: "now()", editable: true, required: false }
+      - { id: "end_time", label: "End time", type: "datetime", default_value: "now()", editable: true, required: false }
+      - { id: "location", label: "Location", type: "string", editable: true, required: false }
+      - { id: "joining_link", label: "Joining link", type: "string", editable: true, required: false }
+      - { id: "owner", label: "Owner", type: "string", editable: true, required: false }
+      - id: "type"
+        label: "Type of event"
+        type: "select"
+        editable: true
+        required: true
+        default_value: "general"
+        options:
+          - { value: "general", label: "General event" }
+          - { value: "community_drop_id", label: "Community Drop in" }
+          - { value: "advisory_group", label: "Advisory Group" }
+          - { value: "working_group", label: "Working Group" }
