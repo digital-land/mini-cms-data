@@ -27,7 +27,7 @@ jobs:
 
       - name: Create specification pull request
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: |
           echo "Creating specification pull request"
           python src/specifications/update_specifications.py
