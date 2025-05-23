@@ -44,7 +44,7 @@ collections:
     description: Guidance pages for planning data
     field_map:
       id: id
-      display_name: title
+      label: title
     fields:
       - { id: "id", label: "ID", type: "string", default_value: "generate_uuid()", required: true }
       - { id: "title", label: "Title", type: "string", editable: true, required: true }
@@ -55,7 +55,7 @@ collections:
     description: Events for Planning data design
     field_map:
       id: id
-      display_name: name
+      label: name
     fields:
       - { id: "id", label: "ID", type: "string", default_value: "generate_uuid()", required: true }
       - { id: "name", label: "Name of event", type: "string", editable: true, required: true }
