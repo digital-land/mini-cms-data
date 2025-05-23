@@ -52,6 +52,7 @@ collections:
         label: Data design events 
         label_single: Data design event
         description: Events for Planning data design
+        type: "repeatable"
         field_map:
           id: id
           label: name
