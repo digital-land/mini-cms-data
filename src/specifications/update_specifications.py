@@ -38,19 +38,6 @@ FILE_MAPPING = {
     "data/collections/specifications/tree-preservation-order.yml": "content/specification/tree-preservation-order.md"
 }
 
-def get_data_order():
-    """Get the order of fields from the config file"""
-    with open('config.yml', 'r') as f:
-        config = yaml.load(f)
-
-    # Find the specifications collection
-    for collection in config['collections']:
-        if collection['id'] == 'specifications':
-            # Extract field IDs from the fields section
-            return [field['id'] for field in collection['fields'] if isinstance(field, dict) and 'id' in field]
-
-    return []
-
 def order_data(data):
     """Order data according to schema"""
     ordered_data = {}
@@ -70,6 +57,19 @@ def order_data(data):
                 ordered_data[PlainScalarString(field)] = data[field]
 
     return ordered_data
+
+def get_data_order():
+    """Get the order of fields from the config file"""
+    with open('config.yml', 'r') as f:
+        config = yaml.load(f)
+
+    # Find the specifications collection
+    for collection in config['collections']:
+        if collection['id'] == 'specifications':
+            # Extract field IDs from the fields section
+            return [field['id'] for field in collection['fields'] if isinstance(field, dict) and 'id' in field]
+
+    return []
 
 def order_dataset(dataset):
     """Order dataset fields according to schema"""
@@ -105,40 +105,46 @@ def order_field(field_item):
 
     return ordered_field
 
-def get_dataset_field_order():
-    """Get the order of dataset fields from the config file"""
+def get_field_order_from_config(path):
+    """
+    Get the order of fields from the config file based on a path
+
+    Args:
+        path: List of field IDs to traverse (e.g., ['datasets'] or ['datasets', 'fields'])
+
+    Returns:
+        List of field IDs in the order they appear in the config
+    """
     with open('config.yml', 'r') as f:
         config = yaml.load(f)
 
     # Find the specifications collection
     for collection in config['collections']:
         if collection['id'] == 'specifications':
-            # Find the datasets field
-            for field in collection['fields']:
-                if isinstance(field, dict) and field.get('id') == 'datasets':
-                    # Extract field IDs from the datasets fields section
-                    return [f['id'] for f in field['fields'] if isinstance(f, dict) and 'id' in f]
+            # Traverse the path to find the target field
+            current_fields = collection['fields']
+
+            for field_id in path:
+                for field in current_fields:
+                    if isinstance(field, dict) and field.get('id') == field_id:
+                        current_fields = field.get('fields', [])
+                        break
+                else:
+                    # If we can't find the field, return empty list
+                    return []
+
+            # Extract field IDs from the final level
+            return [f['id'] for f in current_fields if isinstance(f, dict) and 'id' in f]
 
     return []
+
+def get_dataset_field_order():
+    """Get the order of dataset fields from the config file"""
+    return get_field_order_from_config(['datasets'])
 
 def get_field_property_order():
     """Get the order of field properties from the config file"""
-    with open('config.yml', 'r') as f:
-        config = yaml.load(f)
-
-    # Find the specifications collection
-    for collection in config['collections']:
-        if collection['id'] == 'specifications':
-            # Find the datasets field
-            for field in collection['fields']:
-                if isinstance(field, dict) and field.get('id') == 'datasets':
-                    # Find the fields field within datasets
-                    for dataset_field in field['fields']:
-                        if isinstance(dataset_field, dict) and dataset_field.get('id') == 'fields':
-                            # Extract field IDs from the fields section
-                            return [f['id'] for f in dataset_field['fields'] if isinstance(f, dict) and 'id' in f]
-
-    return []
+    return get_field_order_from_config(['datasets', 'fields'])
 
 def update_files_in_branch(repo, branch_name):
     """
