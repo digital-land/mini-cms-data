@@ -98,7 +98,7 @@ data:
         \n* unique within your dataset\r\n* permanent - it doesn\u2019t change when\
         \ the dataset is updated If you don\u2019t use a reference already, you will\
         \ need to create one. This can be a short set of letters or numbers.\r\n\r\
-        \nExample: A4Da1\r\n\r\nAS4s3"
+        \nExample: A4Da1"
     - description: the name of the article 4 direction area
       field: name
       guidance: 'The official name of the article 4 direction. Example: `Old Market`
