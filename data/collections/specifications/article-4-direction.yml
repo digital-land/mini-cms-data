@@ -9,14 +9,10 @@ data:
         \ the dataset is updated If you don\u2019t use a reference already, you will\
         \ need to create one. This can be a short set of letters or numbers.\r\n\r\
         \nExample: A4D1"
-    - description: the name of the article 4 direction
+    - description: the name of the article 4 direction.
       field: name
-      guidance: 'The official name of the article 4 direction.
-
-
-        Example: `Old Market`"
-
-        '
+      guidance: "The official name of the article 4 direction.\r\n\r\nExample: Old\
+        \ Market\""
     - description: a brief description of the article 4 direction
       field: description
       guidance: "Optional short description of the article 4 direction\u2019s purpose.\n\
