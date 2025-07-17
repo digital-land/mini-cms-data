@@ -37,6 +37,8 @@ collections:
               label: field
             fields:
               - { id: "field", label: "Field", type: "string", required: true }
+              - { id: "dataset-field", label: "Dataset Field", type: "string", required: false }
+              - { id: "dataset", label: "Dataset", type: "string", required: false }
               - { id: "description", label: "Description", type: "text", editable: true }
               - { id: "guidance", label: "Guidance", type: "govspeak", editable: true }
   - id: data_design
