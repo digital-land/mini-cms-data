@@ -15,6 +15,7 @@ collections:
       - { id: "start-date", label: "Start date", type: "date", editable: false }
       - { id: "end-date", label: "End date", type: "date", editable: false }
       - { id: "entry-date", label: "Entry date", type: "date", default_value: "now()", editable: false, required: true }
+      - { id: "documentation-url", label: "Documentation URL", type: "string", editable: false }
       - { id: "github-discussion", label: "GitHub discussion", type: "string", editable: false }
       - { id: "version", label: "Version", type: "string", editable: false }
       - id: "datasets"
@@ -49,7 +50,7 @@ collections:
       - { id: "id", label: "ID", type: "string", editable: false, required: true }
       - { id: "name", label: "Name", type: "string", editable: false, required: true }
       - id: events
-        label: Data design events 
+        label: Data design events
         label_single: Data design event
         description: Events for Planning data design
         type: "repeatable"

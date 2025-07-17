@@ -59,9 +59,86 @@ def order_data(data):
     # Order top-level fields
     for field in data_order:
         if field in data:
-            ordered_data[PlainScalarString(field)] = data[field]
+            if field == 'datasets' and isinstance(data[field], list):
+                # Handle datasets array - order each dataset according to its schema
+                ordered_datasets = []
+                for dataset in data[field]:
+                    ordered_dataset = order_dataset(dataset)
+                    ordered_datasets.append(ordered_dataset)
+                ordered_data[PlainScalarString(field)] = ordered_datasets
+            else:
+                ordered_data[PlainScalarString(field)] = data[field]
 
     return ordered_data
+
+def order_dataset(dataset):
+    """Order dataset fields according to schema"""
+    ordered_dataset = {}
+
+    # Get dataset field order from config
+    dataset_field_order = get_dataset_field_order()
+
+    for field in dataset_field_order:
+        if field in dataset:
+            if field == 'fields' and isinstance(dataset[field], list):
+                # Handle fields array - order each field according to its schema
+                ordered_fields = []
+                for field_item in dataset[field]:
+                    ordered_field = order_field(field_item)
+                    ordered_fields.append(ordered_field)
+                ordered_dataset[PlainScalarString(field)] = ordered_fields
+            else:
+                ordered_dataset[PlainScalarString(field)] = dataset[field]
+
+    return ordered_dataset
+
+def order_field(field_item):
+    """Order field properties according to schema"""
+    ordered_field = {}
+
+    # Get field property order from config
+    field_property_order = get_field_property_order()
+
+    for prop in field_property_order:
+        if prop in field_item:
+            ordered_field[PlainScalarString(prop)] = field_item[prop]
+
+    return ordered_field
+
+def get_dataset_field_order():
+    """Get the order of dataset fields from the config file"""
+    with open('config.yml', 'r') as f:
+        config = yaml.load(f)
+
+    # Find the specifications collection
+    for collection in config['collections']:
+        if collection['id'] == 'specifications':
+            # Find the datasets field
+            for field in collection['fields']:
+                if isinstance(field, dict) and field.get('id') == 'datasets':
+                    # Extract field IDs from the datasets fields section
+                    return [f['id'] for f in field['fields'] if isinstance(f, dict) and 'id' in f]
+
+    return []
+
+def get_field_property_order():
+    """Get the order of field properties from the config file"""
+    with open('config.yml', 'r') as f:
+        config = yaml.load(f)
+
+    # Find the specifications collection
+    for collection in config['collections']:
+        if collection['id'] == 'specifications':
+            # Find the datasets field
+            for field in collection['fields']:
+                if isinstance(field, dict) and field.get('id') == 'datasets':
+                    # Find the fields field within datasets
+                    for dataset_field in field['fields']:
+                        if isinstance(dataset_field, dict) and dataset_field.get('id') == 'fields':
+                            # Extract field IDs from the fields section
+                            return [f['id'] for f in dataset_field['fields'] if isinstance(f, dict) and 'id' in f]
+
+    return []
 
 def update_files_in_branch(repo, branch_name):
     """
