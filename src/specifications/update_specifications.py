@@ -28,7 +28,7 @@ def quoted_key_representer(dumper, data):
 yaml.representer.add_representer(PlainScalarString, quoted_key_representer)
 
 # GitHub repository details
-REPO_NAME = "dilwoarh/digital-land-specification"
+REPO_NAME = "digital-land/specification"
 BRANCH_NAME = f"mini-cms/update-specifications-{datetime.now().strftime('%Y-%m-%d--%H-%M-%S')}"
 FILE_MAPPING = {
     "data/collections/specifications/article-4-direction.yml": "content/specification/article-4-direction.md",
