@@ -28,7 +28,7 @@ jobs:
 
       - name: Create specification pull request
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.SPECIFICATION_PR_FINE_GRAIN_TOKEN }}
         run: |
           echo "Creating specification pull request"
           python src/specifications/update_specifications.py
