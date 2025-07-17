@@ -166,7 +166,7 @@ def update_files_in_branch(repo, branch_name):
             # Dump YAML with ordered data and frontmatter markers
             buffer = StringIO()
             yaml.dump(content, buffer)
-            content = f"---\n{buffer.getvalue().strip()}\n"
+            content = f"---\n{buffer.getvalue().strip()}\n---\n"
 
             # Get the file from GitHub repository if it exists
             try:
