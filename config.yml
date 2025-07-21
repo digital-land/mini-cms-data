@@ -10,7 +10,7 @@ collections:
     fields:
       - { id: "id", label: "ID", type: "string", editable: false, required: true }
       - { id: "title", label: "Title", type: "string", editable: true, required: true }
-      - { id: "body", label: "body", type: "govspeak", editable: true }
+      - { id: "body", label: "Body", type: "govspeak", editable: true }
   - id: specifications
     label: Specifications
     label_single: Specification
