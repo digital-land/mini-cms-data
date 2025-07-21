@@ -1,5 +1,16 @@
 ---
 collections:
+  - id: guidance_pages
+    label: Guidance pages
+    label_single: Guidance page
+    description: Guidance pages on www.planning.data.gov.uk
+    field_map:
+      id: id
+      label: title
+    fields:
+      - { id: "id", label: "ID", type: "string", editable: false, required: true }
+      - { id: "title", label: "Title", type: "string", editable: true, required: true }
+      - { id: "body", label: "body", type: "govspeak", editable: true }
   - id: specifications
     label: Specifications
     label_single: Specification
