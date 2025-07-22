@@ -1,24 +1,16 @@
 data:
+  body: "Your data does not need to be complete or perfect to start. Any data we have\
+    \ from you means we can start to index it and provide it on the platform. Start\
+    \ with what you have and improve it over time.\r\n\r\n## Datasets the service\
+    \ supports\r\n\r\nRight now, the service supports:\r\n\r\n* [article 4 directions](./article-4-direction)\r\
+    \n* [brownfield land](https://www.gov.uk/government/publications/brownfield-land-registers-data-standard/publish-your-brownfield-land-data)\r\
+    \n* [conservation areas](./conservation-area)\r\n* [listed buildings](./listed-building)\r\
+    \n* [tree preservation orders](./tree-preservation-order)\r\n\r\nSoon, the service\
+    \ will support [developer contributions](https://www.gov.uk/guidance/publish-your-developer-contributions-data).\
+    \ Email the persistent URL for each CSV file to <DigitalLand@communities.gov.uk>\
+    \ and we will add them to the national register.\r\n\r\n## Datasets we\u2019re\
+    \ developing\r\n\r\nWe're currently testing and developing data standards for\
+    \ these planning considerations:\r\n\r\n* [design codes](./design-code)\r\n* [local\
+    \ plans](./local-plan)"
   id: specification-landing-page
   title: Prepare your data
-  body: |
-    Your data does not need to be complete or perfect to start. Any data we have from you means we can start to index it and provide it on the platform. Start with what you have and improve it over time.
-
-    ## Datasets the service supports
-
-    Right now, the service supports:
-
-    - [article 4 directions](./article-4-direction)
-    - [brownfield land](https://www.gov.uk/government/publications/brownfield-land-registers-data-standard/publish-your-brownfield-land-data)
-    - [conservation areas](./conservation-area)
-    - listed buildings](./listed-building)
-    - [tree preservation orders](./tree-preservation-order)
-
-    Soon, the service will support [developer contributions](https://www.gov.uk/guidance/publish-your-developer-contributions-data). Email the persistent URL for each CSV file to [DigitalLand@communities.gov.uk](mailto:DigitalLand@communities.gov.uk) and we will add them to the national register.
-
-    ## Datasets we’re developing
-
-    We're currently testing and developing data standards for these planning considerations:
-
-    - [design codes](./design-code)
-    - [local plans](./local-plan)
