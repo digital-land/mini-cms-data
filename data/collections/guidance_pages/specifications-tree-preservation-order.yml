@@ -19,9 +19,9 @@ data:
 
     There are 3 datasets you must provide for tree preservation orders:
 
-    - [tree preservation order dataset](#{{ 'tree preservation order dataset' | slugify }})
-    - [tree preservation zone dataset](#{{ 'tree preservation zone dataset' | slugify }})
-    - [tree dataset](#{{ 'tree dataset' | slugify }})
+    - [tree preservation order dataset](#tree-preservation-order-dataset)
+    - [tree preservation zone dataset](#tree-preservation-zone-dataset)
+    - [tree dataset](#tree-dataset)
 
     Format
     ------

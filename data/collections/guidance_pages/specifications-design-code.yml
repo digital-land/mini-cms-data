@@ -8,8 +8,8 @@ data:
 
     There are 2 datasets you must provide for design codes:
 
-    - [design code dataset](#{{ 'design code dataset' | slugify }})
-    - [design code area dataset](#{{ 'design code area dataset' | slugify }})
+    - [design code dataset](#design-code-dataset)
+    - [design code area dataset](#design-code-area-dataset)
 
     _These datasets may be provided as a single file by adding a single geometry field to the design code dataset, or as two separate files linked by the design-code reference._
 
