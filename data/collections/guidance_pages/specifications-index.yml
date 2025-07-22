@@ -12,5 +12,5 @@ data:
     \ developing\r\n\r\nWe're currently testing and developing data standards for\
     \ these planning considerations:\r\n\r\n* [design codes](./design-code)\r\n* [local\
     \ plans](./local-plan)"
-  id: specification-landing-page
+  id: specification-index
   title: Prepare your data
