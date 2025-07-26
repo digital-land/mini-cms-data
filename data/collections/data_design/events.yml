@@ -14,3 +14,15 @@ data:
       joining_link: https://zoom.example.com/maydesignmonth
       owner: Design Council UK
       type: general
+    - id: July-design-month-mw6rf71e2j
+      name: July Design Month
+      description: |
+        Design all of July
+      audience: Designers, creatives, and enthusiasts
+      link: https://maydesignmonth.example.com
+      start_time: 2025-07-30T09:00:00Z
+      end_time: 2025-07-30T17:00:00Z
+      location: Design Hub, London
+      joining_link: https://zoom.example.com/maydesignmonth
+      owner: Design Council UK
+      type: general
