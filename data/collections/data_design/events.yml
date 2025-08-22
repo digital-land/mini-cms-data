@@ -57,7 +57,7 @@ data:
     joining_link: ''
     link: ''
     location: ''
-    name: test event
+    name: test event 1
     owner: ''
     start_time: '2025-01-01 09:00:00'
     type: general
