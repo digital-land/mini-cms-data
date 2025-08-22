@@ -73,7 +73,7 @@ collections:
         fields:
           - { id: "id", label: "ID", type: "string", default_value: "generate_uuid()", required: true }
           - { id: "name", label: "Name of event", type: "string", editable: true, required: true }
-          - { id: "description", label: "Description", type: "text", editable: true, required: false }
+          - { id: "description", label: "Description", type: "govspeak", editable: true, required: false }
           - { id: "audience", label: "Audience", type: "text", editable: true, required: false }
           - { id: "link", label: "Link", type: "text", editable: true, required: false }
           - { id: "start_time", label: "Start time", type: "datetime", default_value: "now()", editable: true, required: false }
