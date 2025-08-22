@@ -52,14 +52,14 @@ data:
     type: general
   - audience: ''
     description: ''
-    end_time: '2025-02-30 17:00:00'
+    end_time: '2025-01-30 17:00:00'
     id: ca779b45-6e9c-4d04-ad14-5568b19afef1
     joining_link: ''
     link: ''
     location: ''
     name: test event
     owner: ''
-    start_time: '2025-02-01 09:00:00'
+    start_time: '2025-01-01 09:00:00'
     type: general
   id: events
   name: Data Design Events
