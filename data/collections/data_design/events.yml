@@ -16,14 +16,14 @@ data:
       \ Team:\n\n* Data Design updates and progress  \n* Community updates (where\
       \ appropriate)   \n* Open forum \\- \u2018Lean Coffee\u2019 style \\- community\
       \ prioritised discussion on topics raised by the community.\n"
-    end_time: '2025-08-20 12:00:00+00:00'
+    end_time: '2025-08-20 12:00:00'
     id: 2025-08-20-data-standards-community
     joining_link: https://docs.google.com/forms/d/e/1FAIpQLSeuLhyDBzjSFoccSbZUzxn14IU6n9buZwwaI42gsXnYlFB2uQ/viewform
     link: https://docs.google.com/forms/d/e/1FAIpQLSeuLhyDBzjSFoccSbZUzxn14IU6n9buZwwaI42gsXnYlFB2uQ/viewform
     location: Online / Remote
     name: 'August - Data Standards Community: Planning Permissions'
     owner: Planning data team
-    start_time: '2025-08-20 10:30:00+00:00'
+    start_time: '2025-08-20 10:30:00'
     type: general
   - audience: Designers, creatives, and enthusiasts
     description: "We look forward to seeing you at the MHCLG data standards open community.\
@@ -41,25 +41,25 @@ data:
       \ Team:\n\n* Data Design updates and progress  \n* Community updates (where\
       \ appropriate)   \n* Open forum \\- \u2018Lean Coffee\u2019 style \\- community\
       \ prioritised discussion on topics raised by the community.\n"
-    end_time: '2025-09-24 12:00:00+00:00'
+    end_time: '2025-09-24 12:00:00'
     id: 2025-09-24-data-standards-community
     joining_link: https://docs.google.com/forms/d/e/1FAIpQLSeuLhyDBzjSFoccSbZUzxn14IU6n9buZwwaI42gsXnYlFB2uQ/viewform
     link: https://docs.google.com/forms/d/e/1FAIpQLSeuLhyDBzjSFoccSbZUzxn14IU6n9buZwwaI42gsXnYlFB2uQ/viewform
     location: Online / Remote
     name: 'September - Data Standards Community: Planning Permissions'
     owner: Planning data team
-    start_time: '2025-09-24 10:30:00+00:00'
+    start_time: '2025-09-24 10:30:00'
     type: general
   - audience: ''
     description: ''
-    end_time: '2025-02-30 17:00:00+00:00'
+    end_time: '2025-02-30 17:00:00'
     id: ca779b45-6e9c-4d04-ad14-5568b19afef1
     joining_link: ''
     link: ''
     location: ''
     name: test event
     owner: ''
-    start_time: '2025-02-01 09:00:00+00:00'
+    start_time: '2025-02-01 09:00:00'
     type: general
   id: events
   name: Data Design Events
