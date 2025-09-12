@@ -61,5 +61,16 @@ data:
     owner: ''
     start_time: '2025-01-01 09:00:00'
     type: general
+  - audience: ''
+    description: "fdsjbfdsjkbfjksbfdsjkn\r\n\r\n* fdsfdmsklfsdmfsd\r\n* ffdsajfsanfklsd"
+    end_time: 2025-02-12T16:01
+    id: b2760fce-1f02-44f4-8e71-91230583285d
+    joining_link: ''
+    link: ''
+    location: ''
+    name: test paris
+    owner: ''
+    start_time: 2025-02-12T16:01
+    type: general
   id: events
   name: Data Design Events
